@@ -174,14 +174,8 @@ public class awsTest{
 
     public static void Condor_status()
     {
-        // EC2 인스턴스의 public IP 및 인스턴스 ID 설정
         String instanceIpAddress = "";
-        String instanceId = "YOUR_INSTANCE_ID";
-
-        // EC2 인스턴스에 SSH로 연결
         connectInstance(instanceIpAddress);
-
-        // condor_status 명령을 실행
         executeCS();
 
     }
@@ -210,7 +204,6 @@ public class awsTest{
                     e.printStackTrace();
                 }
             }
-
 
             channelExec.disconnect();
             session.disconnect();
