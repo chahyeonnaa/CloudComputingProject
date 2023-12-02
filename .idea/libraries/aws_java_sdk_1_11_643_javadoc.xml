@@ -1,0 +1,30 @@
+<component name="libraryTable">
+  <library name="aws-java-sdk-1.11.643-javadoc">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/CloudProject/libs/awssdk/aws-java-sdk-1.11.643.jar!/" />
+      <root url="jar://$USER_HOME$/CloudProject/libs/etclib/joda-time-2.0.jar!/" />
+      <root url="jar://$USER_HOME$/CloudProject/libs/etclib/org-apache-commons-logging.jar!/" />
+      <root url="jar://$USER_HOME$/CloudProject/libs/http/commons-codec-1.11.jar!/" />
+      <root url="jar://$USER_HOME$/CloudProject/libs/http/commons-logging-1.2.jar!/" />
+      <root url="jar://$USER_HOME$/CloudProject/libs/http/fluent-hc-4.5.10.jar!/" />
+      <root url="jar://$USER_HOME$/CloudProject/libs/http/httpclient-4.5.10.jar!/" />
+      <root url="jar://$USER_HOME$/CloudProject/libs/http/httpclient-cache-4.5.10.jar!/" />
+      <root url="jar://$USER_HOME$/CloudProject/libs/http/httpclient-osgi-4.5.10.jar!/" />
+      <root url="jar://$USER_HOME$/CloudProject/libs/http/httpclient-win-4.5.10.jar!/" />
+      <root url="jar://$USER_HOME$/CloudProject/libs/http/httpcore-4.4.12.jar!/" />
+      <root url="jar://$USER_HOME$/CloudProject/libs/http/httpmime-4.5.10.jar!/" />
+      <root url="jar://$USER_HOME$/CloudProject/libs/http/jna-4.5.2.jar!/" />
+      <root url="jar://$USER_HOME$/CloudProject/libs/http/jna-platform-4.5.2.jar!/" />
+      <root url="jar://$USER_HOME$/CloudProject/libs/jackson/jackson-annotations-2.10.0.pr3.jar!/" />
+      <root url="jar://$USER_HOME$/CloudProject/libs/jackson/jackson-core-2.10.0.pr3.jar!/" />
+      <root url="jar://$USER_HOME$/CloudProject/libs/jackson/jackson-databind-2.10.0.pr3.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/jsch-0.1.55.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/CloudProject/libs/awssdk/aws-java-sdk-1.11.643-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$USER_HOME$/CloudProject/libs/awssdk/aws-java-sdk-1.11.643-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
