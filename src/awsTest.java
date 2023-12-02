@@ -175,7 +175,7 @@ public class awsTest{
     public static void Condor_status()
     {
         // EC2 인스턴스의 public IP 및 인스턴스 ID 설정
-        String instanceIpAddress = "54.197.37.26";
+        String instanceIpAddress = "";
         String instanceId = "YOUR_INSTANCE_ID";
 
         // EC2 인스턴스에 SSH로 연결
