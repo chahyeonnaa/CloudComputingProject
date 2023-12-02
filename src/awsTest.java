@@ -186,11 +186,11 @@ public class awsTest{
     public static void createSecurity(String GroupName, String description, String vpc_id)
     {
         final AmazonEC2 ec2 = AmazonEC2ClientBuilder.defaultClient();
-        // 보안 그룹 생성 요청
+
         CreateSecurityGroupRequest createSecurityGroupRequest = new CreateSecurityGroupRequest()
                 .withGroupName(GroupName)
                 .withDescription(description)
-                .withVpcId(vpc_id);// VPC ID 입력
+                .withVpcId(vpc_id);
 
         CreateSecurityGroupResult response = ec2.createSecurityGroup(createSecurityGroupRequest);
 
@@ -202,14 +202,11 @@ public class awsTest{
                 .withFromPort(22)
                 .withToPort(22);
 
-        // AuthorizeSecurityGroupIngressRequest 객체 생성
         AuthorizeSecurityGroupIngressRequest request = new AuthorizeSecurityGroupIngressRequest()
                 .withGroupId(securityGroupId)
                 .withIpPermissions(sshPermission);
 
         ec2.authorizeSecurityGroupIngress(request);
-
-        //ec2.authorizeSecurityGroupIngress(r -> r.setgroupId(securityGroupId).ipPermissions(sshPermission));
 
 
     }
