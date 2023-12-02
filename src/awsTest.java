@@ -13,6 +13,10 @@ import com.amazonaws.services.ec2.model.DescribeSecurityGroupsRequest;
 import com.amazonaws.services.ec2.model.DescribeSecurityGroupsResult;
 import com.amazonaws.services.ec2.model.SecurityGroup;
 
+
+import com.amazonaws.services.ec2.model.CreateSecurityGroupRequest;
+import com.amazonaws.services.ec2.model.CreateSecurityGroupResult;
+
 import com.amazonaws.services.ec2.model.*;
 import com.jcraft.jsch.ChannelExec;
 import com.jcraft.jsch.JSch;
@@ -58,6 +62,8 @@ public class awsTest{
 
         Scanner menu = new Scanner(System.in);
         Scanner id_string = new Scanner(System.in);
+        Scanner group = new Scanner(System.in);
+        Scanner vpc = new Scanner(System.in);
         int number = 0;
 
         while(true)
@@ -71,7 +77,8 @@ public class awsTest{
             System.out.println("  3. start instance               4. available regions          ");
             System.out.println("  5. stop instance                6. create instance from image ");
             System.out.println("  7. reboot instance              8. list images                ");
-            System.out.println("  9. condor status               10. list security group        ");
+            System.out.println("  9. condor status                                              ");
+            System.out.println("  10. list security group         11. create security group     ");
             System.out.println("                                  99. quit                      ");
             System.out.println("----------------------------------------------------------------");
 
@@ -86,6 +93,8 @@ public class awsTest{
 
 
             String instance_id = "";
+            String groupname = "";
+            String vpc_id = "";
 
             switch(number) {
                 case 1:
@@ -149,6 +158,19 @@ public class awsTest{
                     ListSecurity();
                     break;
 
+                case 11:
+                    System.out.print("Enter Security Group Name: ");
+                    if(id_string.hasNext())
+                        instance_id = id_string.nextLine();
+                        System.out.print("Enter description : ");
+                        groupname = group.nextLine();
+                    System.out.print("Enter vpc id : ");
+                        vpc_id = vpc.nextLine();
+
+                    if(!instance_id.isBlank())
+                        createSecurity(instance_id, groupname, vpc_id);
+                    break;
+
                 case 99:
                     System.out.println("bye!");
                     menu.close();
@@ -161,6 +183,36 @@ public class awsTest{
 
     }
 
+    public static void createSecurity(String GroupName, String description, String vpc_id)
+    {
+        final AmazonEC2 ec2 = AmazonEC2ClientBuilder.defaultClient();
+        // 보안 그룹 생성 요청
+        CreateSecurityGroupRequest createSecurityGroupRequest = new CreateSecurityGroupRequest()
+                .withGroupName(GroupName)
+                .withDescription(description)
+                .withVpcId(vpc_id);// VPC ID 입력
+
+        CreateSecurityGroupResult response = ec2.createSecurityGroup(createSecurityGroupRequest);
+
+        String securityGroupId = response.getGroupId();
+        System.out.println("Created Security Group ID: " + securityGroupId);
+
+        IpPermission sshPermission = new IpPermission()
+                .withIpProtocol("tcp")
+                .withFromPort(22)
+                .withToPort(22);
+
+        // AuthorizeSecurityGroupIngressRequest 객체 생성
+        AuthorizeSecurityGroupIngressRequest request = new AuthorizeSecurityGroupIngressRequest()
+                .withGroupId(securityGroupId)
+                .withIpPermissions(sshPermission);
+
+        ec2.authorizeSecurityGroupIngress(request);
+
+        //ec2.authorizeSecurityGroupIngress(r -> r.setgroupId(securityGroupId).ipPermissions(sshPermission));
+
+
+    }
 
     public static void ListSecurity()
     {
@@ -174,7 +226,7 @@ public class awsTest{
             System.out.println("Security Group Name: " + securityGroup.getGroupName());
             System.out.println("Description: " + securityGroup.getDescription());
             System.out.println("VPC ID: " + securityGroup.getVpcId());
-            System.out.println("VPC ID: " + securityGroup.getIpPermissions());
+            System.out.println("IP permissions: " + securityGroup.getIpPermissions());
             System.out.println("\n");
         }
 
