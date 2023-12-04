@@ -273,7 +273,7 @@ public class awsTest{
         try {
             JSch jsch = new JSch();
             session = jsch.getSession("ec2-user", Address, 22);
-            jsch.addIdentity("/");
+            jsch.addIdentity("");
             session.setConfig("StrictHostKeyChecking", "no");
             session.connect();
             System.out.println("Connected to the instance.");
@@ -282,6 +282,9 @@ public class awsTest{
         }
 
     }
+
+
+
     public static void listInstances() {
 
         System.out.println("Listing instances....");
@@ -465,8 +468,8 @@ public class awsTest{
             System.out.printf("[ImageID] %s, [Name] %s, [Owner] %s\n",
                     images.getImageId(), images.getName(), images.getOwnerId());
         }
-
     }
+
 
 }
 
